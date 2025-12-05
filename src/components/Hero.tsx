@@ -1,11 +1,43 @@
-// import React from 'react'
-// import HeroImage from '../../public/images/noise.png'
+import gsap from "gsap";
+import { useEffect, useRef } from "react";
+import "../App.css"
 const Hero = () => {
-  return (
-    <section id='hero' className='absolute inset-0 size-full bg-[url("../../public/images/noise.png")]'>
-      
-    </section>
-  )
-}
+  const txtRef = useRef<HTMLHeadingElement>(null);
+  useEffect(() => {
+    const txt = txtRef.current?.textContent || "";
+    const splittedText = txt.split("");
 
-export default Hero
+    let clutteredText = ''
+    splittedText.map((char) => {
+      clutteredText += `<span class="char">${char}</span>`;
+    })
+    txtRef.current!.innerHTML = clutteredText;
+    gsap.from(".txt-Aniamte span", {
+      y: 100,
+      opacity: 0,
+      stagger: 0.1,
+      duration: 1,
+      ease: "power4.out"
+    })
+  }, [])
+
+
+  return (
+    <section>
+      <div className="">
+        <h2
+          ref={txtRef}
+          className="txt-Aniamte flex text-6xl p-5 bg-white md:text-8xl font-bold text-black"
+        >
+          Mehsan Ali
+        </h2>
+      </div>
+      <div className="mt-10">
+        <div className="box bg-amber-500 p-15 w-fit m-5"></div>
+      </div>
+
+    </section>
+  );
+};
+
+export default Hero;
