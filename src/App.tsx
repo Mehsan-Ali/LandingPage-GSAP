@@ -7,11 +7,11 @@ import About from './components/About'
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText) // Register GSAP plugins globally
 const App = () => {
   return (
-    <main>
+    <>
       <NavBar />
       <Hero />
       <About />
-    </main>
+    </>
   )
 }
 
