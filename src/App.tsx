@@ -3,6 +3,7 @@ import { gsap } from 'gsap'
 import NavBar from './components/NavBar'
 import Hero from './components/Hero'
 import About from './components/About'
+import SVGAnimation from './components/SVGAnimation'
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText) // Register GSAP plugins globally
 const App = () => {
@@ -11,6 +12,7 @@ const App = () => {
       <NavBar />
       <Hero />
       <About />
+      <SVGAnimation />
     </>
   )
 }
