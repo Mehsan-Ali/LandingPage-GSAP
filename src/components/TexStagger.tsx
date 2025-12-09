@@ -9,7 +9,7 @@ const TexStagger = () => {
                 scrollTrigger: {
                     trigger: '.page-5',
                     scroller: "body",
-                    markers: true,
+                    // markers: true,
                     start: 'top -30%',
                     end: 'top -120%',
                     scrub: 2,

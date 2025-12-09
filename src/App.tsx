@@ -5,6 +5,7 @@ import Hero from './components/Hero'
 import About from './components/About'
 import SVGAnimation from './components/SVGAnimation'
 import TexStagger from './components/TexStagger'
+import TextAnimationTwo from './components/TextAnimationTwo'
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText) // Register GSAP plugins globally
 const App = () => {
@@ -15,7 +16,7 @@ const App = () => {
       <SVGAnimation />
       <About />
       <TexStagger />
-      <About />
+      <TextAnimationTwo />
     </>
   )
 }
