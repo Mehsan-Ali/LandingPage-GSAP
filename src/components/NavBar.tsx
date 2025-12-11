@@ -1,24 +1,59 @@
-import {navLinks} from "../../constants/index"
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { Cross, Menu } from "lucide-react";
+import React from "react";
+
 const NavBar = () => {
+    const [isOpen, setIsOpen] = React.useState(false);
+    const menuRef = React.useRef(null);
+
+    useGSAP(() => {
+        if (isOpen) {
+            gsap.fromTo(
+                menuRef.current,
+                { x: "100%" },
+                { x: "0%", duration: 0.5, ease: "power3.out" }
+            );
+        } else {
+            gsap.to(menuRef.current, {
+                x: "100%",
+                duration: 0.4,
+                ease: "power3.in",
+            });
+        }
+        gsap.to('.nav-list li', {
+            x: isOpen ? 0 : 100,
+            opacity: isOpen ? 1 : 0,
+            duration: 0.3,
+            delay: isOpen ? 0.5 : 0,
+            stagger: { each: 0.3, from: "start" },
+        })
+    }, [isOpen]); 
+
     return (
-        <nav>
-            <div>
-                <a href="#home" className="flex items-center gap-2">
-                    <img src="./images/logo.png" alt="Logo" className="h-12 w-auto object-cover rounded-2xl"/>
-                    <p className="font-light text-3xl">LINK CITY</p>
-                </a>
-                <ul>
-                    {
-                        navLinks.map((link) => (
-                            <li key={link.id}>
-                                <a href={`#${link.id}`} className="text-lg font-light p-2 backdrop-blur hover:backdrop-blur-none hover:bg-white hover:text-black hover:rounded-lg hover:transition-colors hover:duration-300 hover:ease-in duration-300 rounded-lg">{link.title}</a>
-                            </li>
-                        ))
-                    }
+        <div className="flex justify-end p-5 bg-black">
+            <Menu
+                onClick={() => setIsOpen(!isOpen)}
+                className="text-white cursor-pointer"
+            />
+
+            {/* Keep menu mounted always for GSAP exit animation */}
+            <div
+                ref={menuRef}
+                className={`nav-menu text-white fixed inset-0 bg-black shadow-lg rounded-md p-20 
+          ${isOpen ? "block" : "pointer-events-none"}`}
+                style={{ transform: "translateX(100%)" }} // initial position
+            >
+                <Cross className="cursor-pointer" onClick={() => setIsOpen(!isOpen)} />
+                <ul className="nav-list space-y-10 text-3xl flex flex-col justify-center h-full">
+                    <li className="cursor-pointer">Home</li>
+                    <li className="cursor-pointer">About</li>
+                    <li className="cursor-pointer">Services</li>
+                    <li className="cursor-pointer">Contact</li>
                 </ul>
             </div>
-        </nav>
-    )
-}
+        </div>
+    );
+};
 
-export default NavBar
+export default NavBar;
