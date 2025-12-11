@@ -12,12 +12,12 @@ const NavBar = () => {
             gsap.fromTo(
                 menuRef.current,
                 { x: "100%" },
-                { x: "0%", duration: 0.5, ease: "power3.out" }
+                { x: "0%", duration: 0.8, ease: "power3.out" }
             );
         } else {
             gsap.to(menuRef.current, {
                 x: "100%",
-                duration: 0.4,
+                duration: 1.6,
                 ease: "power3.in",
             });
         }
